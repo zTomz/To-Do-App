@@ -9,3 +9,6 @@ data.
 Go to the Releases and install the app.apk file on your device.
 Your phone will show you everything after your click on the 
 app.apk file.
+
+## Credits
+The design is by: Sarah Ballout, https://www.behance.net/gallery/134422939/To-Do-List-App-UI-Design?tracking_source=search_projects%7Cto%20do%20list

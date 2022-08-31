@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
-import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:to_do_app/model/todo.dart';
 import 'package:to_do_app/provider.dart';
 
@@ -53,11 +52,8 @@ class HomePage extends ConsumerWidget {
                     itemCount: todos.length,
                     itemBuilder: (context, index) => Row(
                       children: [
-                        MSHCheckbox(
-                          size: 20,
-                          checkedColor: const Color.fromARGB(255, 255, 82, 82),
-                          value: todos[index].finished,
-                          onChanged: (newValue) async {
+                        GestureDetector(
+                          onTap: () {
                             ref.read(toDoProvider.notifier).update((state) => [
                                   for (ToDo todo in todos)
                                     if (todo.createdDate ==
@@ -71,6 +67,33 @@ class HomePage extends ConsumerWidget {
                                       todo
                                 ]);
                           },
+                          child: Container(
+                            width: 25,
+                            height: 25,
+                            decoration: todos[index].finished
+                                ? BoxDecoration(
+                                    color:
+                                        const Color.fromARGB(255, 255, 82, 82),
+                                    borderRadius: BorderRadius.circular(8),
+                                  )
+                                : BoxDecoration(
+                                    border: Border.all(
+                                      width: 3,
+                                      color: const Color.fromARGB(
+                                          255, 255, 82, 82),
+                                    ),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                            child: todos[index].finished
+                                ? const Center(
+                                    child: Icon(
+                                      Icons.done_rounded,
+                                      color: Colors.white,
+                                      size: 20,
+                                    ),
+                                  )
+                                : const SizedBox.shrink(),
+                          ),
                         ),
                         const SizedBox(width: 15),
                         SizedBox(

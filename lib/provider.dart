@@ -6,6 +6,8 @@ final toDoProvider = StateProvider<List<ToDo>>((ref) {
   final toDoBox = Hive.box<ToDo>("todos");
   List<ToDo> todos = [];
   toDoBox.values.forEach((todo) => todos.add(todo));
+  toDoBox.values.forEach((todo) => print("Provider " + todo.finished.toString()));
   return todos;
 });
+
 final addToDoProvider = StateProvider((ref) => false);
